@@ -51,8 +51,8 @@ public class MyPlayer {
         for (int a = 0; a < 4; a++) {
             for (int b = 0; b <= a; b++) {
                 for (int c = 0; c <= b; c++) {
-                        System.out.println(a+""+b+""+c);
-                        calculateboards(a, b, c);
+                    System.out.println(a + "" + b + "" + c);
+                    calculateboards(a, b, c);
 
                 }
             }
@@ -62,25 +62,58 @@ public class MyPlayer {
         //something like if ( a+b+c <=
         // totalboards = (a+b+c-1);
     }
-    private void calculateboards (int c1, int c2, int c3) {
+
+    private void calculateboards(int c1, int c2, int c3) {
 
 
         for (int a = 0; a < c3; a++) {
-            System.out.println("    "+c1+""+""+c2+""+a);
+            System.out.println("    " + c1 + "" + "" + c2 + "" + a);
 
 
         }
 
         for (int b = 0; b < c2; b++) {
             if (b < c3)
-                System.out.println("    "+c1+""+""+b+""+b);
+                System.out.println("    " + c1 + "" + "" + b + "" + b);
             else
-                System.out.println("    "+c1+""+""+b+""+c3);
+                System.out.println("    " + c1 + "" + "" + b + "" + c3);
 
 
         }
-    }
 
+
+        /*for (int c = 1; c < c1; c++) {
+            for (int b = 0; b > c1; b++)
+                for (int a = 0; a > c2; a++)
+            if (c > c2)
+                System.out.println("    "+c+""+""+b+""+a);
+            else
+                System.out.println("    "+c+""+""+c2+""+c3);
+
+        }*/
+        //for column 1 for each row clicked need to set column 2 and 3 to equal if they are greater
+        for(int c = 1; c < c1; c++){
+            //need a place to hold  starting value of column2 and column3
+            //if column one is less than either of those columns
+            //then use column one value instead of the value in column 2 or column 3
+            int c2o = c2;
+            int c3o = c3;
+            if (c < c2)
+                c2o = c;
+            if (c < c3)
+                c3o = c;
+            System.out.println("    " + c + "" + c2o + "" + c3o);
+        }
+
+    }
+    private Point calculatebestmove(int c1, int c2, int c3){
+        //calcylate then print the best move option
+        //best move leaves only 2 moves that can't kill all chips or 0
+        //use the gameboard to find what is on the board
+        int row = 1;
+        int col = 1;
+        return new Point(row, col);
+    }
 
     public Point move(Chip[][] pBoard) {
 
@@ -101,7 +134,11 @@ public class MyPlayer {
          */
 
 
-        Point myMove = new Point(row, column);
+
+
+
+        //need to fill out calculate best move next
+        Point myMove = calculatebestmove(1,1,1);
         return myMove;
     }
 
